@@ -12,8 +12,11 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5",
+        "league/fractal": "^0.17.0",
         "mews/purifier": "~2.0",
-        "psr/http-message": "^1.0"
+        "psr/http-message": "^1.0",
+        "yajra/laravel-datatables": "^1.0",
+        "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -27,7 +30,9 @@
         "sentry/sentry-laravel": "^0.8.0",
         "symfony/css-selector": "3.4.x-dev",
         "symfony/dom-crawler": "3.4.x-dev",
-        "barryvdh/laravel-debugbar": "^3.1"
+        "barryvdh/laravel-debugbar": "^3.1",
+        "infyomlabs/laravel-generator": "5.5.x-dev",
+        "infyomlabs/adminlte-templates": "5.5.x-dev"
     },
     "autoload": {
         "classmap": [
@@ -59,6 +64,17 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "post-install-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:models",
+            "php artisan ide-helper:meta",
+            "php artisan optimize"
         ]
     },
     "config": {

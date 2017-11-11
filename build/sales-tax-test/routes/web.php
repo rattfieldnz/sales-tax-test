@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::resource('products', 'ProductController');
+
+Route::resource('baskets', 'BasketController');
+
+Route::resource('receipts', 'ReceiptController');
