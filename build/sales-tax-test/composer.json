@@ -19,20 +19,21 @@
         "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.1",
         "filp/whoops": "~2.0",
         "friendsofphp/php-cs-fixer": "^2.8",
         "fzaninotto/faker": "~1.7",
+        "infyomlabs/adminlte-templates": "5.5.x-dev",
+        "infyomlabs/laravel-generator": "5.5.x-dev",
         "mockery/mockery": "~1.0",
+        "mpociot/laravel-test-factory-helper": "^0.5.0",
         "phpmd/phpmd": "^2.6",
         "phpunit/php-invoker": "^1.1",
         "phpunit/phpunit": "^6.4",
-        "squizlabs/php_codesniffer": "^3.1",
         "sentry/sentry-laravel": "^0.8.0",
+        "squizlabs/php_codesniffer": "^3.1",
         "symfony/css-selector": "3.4.x-dev",
-        "symfony/dom-crawler": "3.4.x-dev",
-        "barryvdh/laravel-debugbar": "^3.1",
-        "infyomlabs/laravel-generator": "5.5.x-dev",
-        "infyomlabs/adminlte-templates": "5.5.x-dev"
+        "symfony/dom-crawler": "3.4.x-dev"
     },
     "autoload": {
         "classmap": [

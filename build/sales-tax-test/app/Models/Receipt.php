@@ -14,11 +14,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property \Illuminate\Database\Eloquent\Collection Basket
  * @property \Illuminate\Database\Eloquent\Collection productsBaskets
- * @property decimal final_product_cost_total
- * @property decimal sales_tax_total
- * @property decimal import_tax_total
- * @property decimal final_taxes_total
- * @property decimal final_receipt_total
+ * @property float final_product_cost_total
+ * @property float sales_tax_total
+ * @property float import_tax_total
+ * @property float final_taxes_total
+ * @property float final_receipt_total
  * @property string receipt_content
  */
 class Receipt extends Model
@@ -68,5 +68,14 @@ class Receipt extends Model
     public function basket()
     {
         return $this->belongsTo(Basket::class);
+    }
+
+    /**
+     * Get the products in the receipt, via the associated basket.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function products(){
+        return $this->basket->products();
     }
 }

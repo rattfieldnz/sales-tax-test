@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property \Illuminate\Database\Eloquent\Collection productsBaskets
  * @property string description
- * @property decimal price
+ * @property float price
  * @property integer sales_tax_percent
  * @property integer import_tax_percent
  */
@@ -45,6 +45,7 @@ class Product extends Model
     protected $casts = [
         'id' => 'integer',
         'description' => 'string',
+        'price' => 'float',
         'sales_tax_percent' => 'integer',
         'import_tax_percent' => 'integer'
     ];

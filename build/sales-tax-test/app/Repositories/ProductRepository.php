@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use Illuminate\Container\Container as Application;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
@@ -17,6 +18,16 @@ use InfyOm\Generator\Common\BaseRepository;
 */
 class ProductRepository extends BaseRepository
 {
+    /**
+     * ProductRepository constructor.
+     *
+     * @param \Illuminate\Container\Container $app
+     */
+    public function __construct(Application $app)
+    {
+        parent::__construct($app);
+    }
+
     /**
      * @var array
      */
