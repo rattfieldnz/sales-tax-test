@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * Class CreateBasketsTable
  *
- * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  */
 class CreateBasketsTable extends Migration
 {
@@ -18,13 +18,15 @@ class CreateBasketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('baskets', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('receipt_id', false, true);
-            $table->foreign('receipt_id')->references('id')->on('receipts');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        Schema::create(
+            'baskets', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('receipt_id', false, true);
+                $table->foreign('receipt_id')->references('id')->on('receipts');
+                $table->timestamps();
+                $table->softDeletes();
+            }
+        );
     }
 
     /**

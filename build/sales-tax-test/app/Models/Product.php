@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Product
+ *
  * @package App\Models
  * @version November 11, 2017, 1:43 pm NZDT
  * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>

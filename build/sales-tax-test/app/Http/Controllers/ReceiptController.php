@@ -19,7 +19,9 @@ use Response;
  */
 class ReceiptController extends AppBaseController
 {
-    /** @var  ReceiptRepository */
+    /**
+     * @var  ReceiptRepository 
+     */
     private $receiptRepository;
 
     public function __construct(ReceiptRepository $receiptRepo)
@@ -31,7 +33,7 @@ class ReceiptController extends AppBaseController
     /**
      * Display a listing of the Receipt.
      *
-     * @param ReceiptDataTable $receiptDataTable
+     * @param  ReceiptDataTable $receiptDataTable
      * @return Response
      */
     public function index(ReceiptDataTable $receiptDataTable)
@@ -70,7 +72,7 @@ class ReceiptController extends AppBaseController
     /**
      * Display the specified Receipt.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -90,7 +92,7 @@ class ReceiptController extends AppBaseController
     /**
      * Show the form for editing the specified Receipt.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -110,7 +112,7 @@ class ReceiptController extends AppBaseController
     /**
      * Update the specified Receipt in storage.
      *
-     * @param  int              $id
+     * @param int                  $id
      * @param UpdateReceiptRequest $request
      *
      * @return Response
@@ -135,7 +137,7 @@ class ReceiptController extends AppBaseController
     /**
      * Remove the specified Receipt from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */

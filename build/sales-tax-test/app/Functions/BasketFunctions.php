@@ -108,7 +108,8 @@ class BasketFunctions implements BasketInterface
             $this->getFinalTaxesTotal();
     }
 
-    public function createReceipt(){
+    public function createReceipt()
+    {
 
         $contentBody = "";
         $finalProductsCost = 0.0;
@@ -130,18 +131,20 @@ class BasketFunctions implements BasketInterface
             $count++;
         }
 
-        $receipt = new Receipt([
+        $receipt = new Receipt(
+            [
             'final_product_cost_total' => $finalProductsCost,
             'sales_tax_total' => $salesTaxTotal,
             'import_tax_total' => $importTaxTotal,
             'final_taxes_total' => $salesTaxTotal + $importTaxTotal,
             'final_receipt_total' => $finalProductsCost + $salesTaxTotal + $importTaxTotal,
             'receipt_content' => $contentBody
-        ]);
+            ]
+        );
 
         $receipt->save();
 
-        if(!empty($receipt)){
+        if(!empty($receipt)) {
             $this->basket->receipt_id = $receipt->id;
             $this->basket->save();
         }

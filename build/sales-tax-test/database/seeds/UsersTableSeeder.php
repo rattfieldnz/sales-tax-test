@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 /**
  * Class UsersTableSeeder
  *
- * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  */
 class UsersTableSeeder extends Seeder
 {
@@ -19,11 +19,13 @@ class UsersTableSeeder extends Seeder
     {
         // We only want to seed a test user in a local environment.
         if(config('app.env') == 'local') {
-            $user = new User([
+            $user = new User(
+                [
                 'name' => "Sales Tax Test Admin",
                 'email' => "admin@salestaxtest.com",
                 'password' => bcrypt("P@ssw0rd55")
-            ]);
+                ]
+            );
             $user->save();
 
             $this->command->info("Seeded test user: name => " . $user->name . ", email => " . $user->email);

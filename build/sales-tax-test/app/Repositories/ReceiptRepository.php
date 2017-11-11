@@ -8,6 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 
 /**
  * Class ReceiptRepository
+ *
  * @package App\Repositories
  * @version November 11, 2017, 2:59 pm NZDT
  * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
@@ -15,7 +16,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Receipt findWithoutFail($id, $columns = ['*'])
  * @method Receipt find($id, $columns = ['*'])
  * @method Receipt first($columns = ['*'])
-*/
+ */
 class ReceiptRepository extends BaseRepository
 {
     /**

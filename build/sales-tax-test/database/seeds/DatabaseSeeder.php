@@ -4,7 +4,8 @@ use Illuminate\Database\Seeder;
 
 /**
  * Class DatabaseSeeder
- * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ *
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  */
 class DatabaseSeeder extends Seeder
 {

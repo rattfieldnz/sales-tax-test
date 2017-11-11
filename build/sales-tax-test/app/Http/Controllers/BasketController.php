@@ -19,7 +19,9 @@ use Response;
  */
 class BasketController extends AppBaseController
 {
-    /** @var  BasketRepository */
+    /**
+     * @var  BasketRepository 
+     */
     private $basketRepository;
 
     public function __construct(BasketRepository $basketRepo)
@@ -31,7 +33,7 @@ class BasketController extends AppBaseController
     /**
      * Display a listing of the Basket.
      *
-     * @param BasketDataTable $basketDataTable
+     * @param  BasketDataTable $basketDataTable
      * @return Response
      */
     public function index(BasketDataTable $basketDataTable)
@@ -70,7 +72,7 @@ class BasketController extends AppBaseController
     /**
      * Display the specified Basket.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -90,7 +92,7 @@ class BasketController extends AppBaseController
     /**
      * Show the form for editing the specified Basket.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -110,7 +112,7 @@ class BasketController extends AppBaseController
     /**
      * Update the specified Basket in storage.
      *
-     * @param  int              $id
+     * @param int                 $id
      * @param UpdateBasketRequest $request
      *
      * @return Response
@@ -135,7 +137,7 @@ class BasketController extends AppBaseController
     /**
      * Remove the specified Basket from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */

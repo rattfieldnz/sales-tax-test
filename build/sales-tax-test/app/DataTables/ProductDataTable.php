@@ -17,7 +17,7 @@ class ProductDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @param mixed $query Results from query() method.
+     * @param  mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
@@ -50,7 +50,8 @@ class ProductDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
-            ->parameters([
+            ->parameters(
+                [
                 'dom'     => 'Bfrtip',
                 'order'   => [[0, 'desc']],
                 'buttons' => [
@@ -60,7 +61,8 @@ class ProductDataTable extends DataTable
                     'reset',
                     'reload',
                 ],
-            ]);
+                ]
+            );
     }
 
     /**

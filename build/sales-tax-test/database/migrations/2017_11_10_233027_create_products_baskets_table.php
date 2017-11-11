@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * Class CreateProductsBasketsTable
  *
- * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @author Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
  */
 class CreateProductsBasketsTable extends Migration
 {
@@ -18,12 +18,14 @@ class CreateProductsBasketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products_baskets', function (Blueprint $table) {
-            $table->integer('product_id', false, true);
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('basket_id', false, true);
-            $table->foreign('basket_id')->references('id')->on('baskets');
-        });
+        Schema::create(
+            'products_baskets', function (Blueprint $table) {
+                $table->integer('product_id', false, true);
+                $table->foreign('product_id')->references('id')->on('products');
+                $table->integer('basket_id', false, true);
+                $table->foreign('basket_id')->references('id')->on('baskets');
+            }
+        );
     }
 
     /**

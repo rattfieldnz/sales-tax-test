@@ -17,7 +17,9 @@ use Response;
  */
 class ProductController extends AppBaseController
 {
-    /** @var  ProductRepository */
+    /**
+     * @var  ProductRepository 
+     */
     private $productRepository;
 
     public function __construct(ProductRepository $productRepo)
@@ -29,7 +31,7 @@ class ProductController extends AppBaseController
     /**
      * Display a listing of the Product.
      *
-     * @param ProductDataTable $productDataTable
+     * @param  ProductDataTable $productDataTable
      * @return Response
      */
     public function index(ProductDataTable $productDataTable)
@@ -68,7 +70,7 @@ class ProductController extends AppBaseController
     /**
      * Display the specified Product.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -88,7 +90,7 @@ class ProductController extends AppBaseController
     /**
      * Show the form for editing the specified Product.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -108,7 +110,7 @@ class ProductController extends AppBaseController
     /**
      * Update the specified Product in storage.
      *
-     * @param  int              $id
+     * @param int                  $id
      * @param UpdateProductRequest $request
      *
      * @return Response
@@ -133,7 +135,7 @@ class ProductController extends AppBaseController
     /**
      * Remove the specified Product from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */

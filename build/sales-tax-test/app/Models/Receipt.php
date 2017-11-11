@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Receipt
+ *
  * @package App\Models
  * @version November 11, 2017, 2:59 pm NZDT
  * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
@@ -75,7 +76,8 @@ class Receipt extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function products(){
+    public function products()
+    {
         return $this->basket->products();
     }
 }

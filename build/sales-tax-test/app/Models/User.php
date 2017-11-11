@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
+ *
  * @package App\Models
  * @version November 11, 2017, 12:27 pm NZDT
  * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
