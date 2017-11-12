@@ -49,7 +49,7 @@ class Basket extends Model
      * @var array
      */
     public static $rules = [
-        
+        'receipt_id' => 'sometimes|integer|exists:receipts,id'
     ];
 
     /**

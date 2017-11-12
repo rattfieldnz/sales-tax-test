@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: robattfield
- * Date: 11/11/2017
- * Time: 20:24
- */
 
 namespace App\Interfaces;
 
