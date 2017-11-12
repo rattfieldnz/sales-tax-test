@@ -42,7 +42,7 @@ class ProductFunctions implements ProductInterface
      */
     public function getSalesTaxPercentage(): int
     {
-        return $this->product->sales_tax_percent;
+        return intval($this->product->sales_tax_percent);
     }
 
     /**
@@ -52,7 +52,7 @@ class ProductFunctions implements ProductInterface
      */
     public function getImportTaxPercentage(): int
     {
-        return $this->product->import_tax_percent;
+        return intval($this->product->import_tax_percent);
     }
 
     /**
@@ -62,7 +62,7 @@ class ProductFunctions implements ProductInterface
      */
     public function getPrice()
     {
-        return $this->product->price;
+        return floatval($this->product->price);
     }
 
     /**
@@ -72,7 +72,10 @@ class ProductFunctions implements ProductInterface
      */
     public function getSalesTaxCost()
     {
-        return $this->getPrice() * ($this->getSalesTaxPercentage()/100);
+        $productPrice = $this->getPrice();
+        $taxPercent = $this->getSalesTaxPercentage();
+
+        return Number::calculateTax($productPrice, $taxPercent);
     }
 
     /**
@@ -82,7 +85,10 @@ class ProductFunctions implements ProductInterface
      */
     public function getImportTaxCost()
     {
-        return $this->getPrice() * ($this->getImportTaxPercentage()/100);
+        $productPrice = $this->getPrice();
+        $taxPercent = $this->getImportTaxPercentage();
+
+        return Number::calculateTax($productPrice, $taxPercent);
     }
 
     /**

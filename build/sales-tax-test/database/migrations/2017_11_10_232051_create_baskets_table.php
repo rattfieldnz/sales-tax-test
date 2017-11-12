@@ -21,7 +21,7 @@ class CreateBasketsTable extends Migration
         Schema::create(
             'baskets', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('receipt_id', false, true);
+                $table->integer('receipt_id', false, true)->nullable();
                 $table->foreign('receipt_id')->references('id')->on('receipts');
                 $table->timestamps();
                 $table->softDeletes();

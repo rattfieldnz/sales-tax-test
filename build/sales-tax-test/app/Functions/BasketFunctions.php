@@ -6,7 +6,7 @@ use App\Interfaces\BasketInterface;
 use App\Models\Basket;
 use App\Models\Product;
 use App\Models\Receipt;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * Class BasketFunctions
@@ -46,8 +46,8 @@ class BasketFunctions implements BasketInterface
     /**
      * Add a collection of products to a basket.
      *
-     * @param \Illuminate\Database\Eloquent\Collection $products
-     * @param \App\Models\Basket                       $basket
+     * @param \Illuminate\Support\Collection $products
+     * @param \App\Models\Basket                                                      $basket
      */
     public static function addProducts(Collection $products, Basket $basket){
         if(!empty($basket)){
@@ -134,9 +134,9 @@ class BasketFunctions implements BasketInterface
     public function createReceipt()
     {
         $contentBody = "";
-        $finalProductsCost = 0.0;
-        $salesTaxTotal = 0.0;
-        $importTaxTotal = 0.0;
+        $finalProductsCost = 0.00;
+        $salesTaxTotal = 0.00;
+        $importTaxTotal = 0.00;
 
         $count = 1;
         foreach($this->getProducts() as $product){
@@ -144,23 +144,28 @@ class BasketFunctions implements BasketInterface
 
             $productDescription = (new ProductFunctions($product))->getDescription();
             $costsTaxInclusive = (new ProductFunctions($product))->finalCost();
-            $finalProductsCost += ($costsTaxInclusive * $productCount);
+
+            $finalProductsCost += ((new ProductFunctions($product))->getPrice() * $productCount);
             $salesTaxTotal += ((new ProductFunctions($product))->getSalesTaxCost() * $productCount);
             $importTaxTotal += ((new ProductFunctions($product))->getImportTaxCost() * $productCount);
 
-            $contentBody .= $productCount . ' ' . $productDescription . ': ' . $costsTaxInclusive;
-            $count != count($this->getProducts()) ? $contentBody . "\n" : $contentBody . "";
+            $contentBody .= ($productCount) . ' ' . $productDescription . ': ' . money_format('%i',$costsTaxInclusive);
+            $count != count($this->getProducts()) ? $contentBody .= "\n" : null;
             $count++;
         }
 
+        $totalTaxes = ($salesTaxTotal + $importTaxTotal);
+        $contentBody .= "\nSales Taxes: " . money_format('%i',$totalTaxes);
+        $contentBody .= "\nTotal: " . money_format('%i',($finalProductsCost + $totalTaxes));
+
         $receipt = new Receipt(
             [
-            'final_product_cost_total' => $finalProductsCost,
-            'sales_tax_total' => $salesTaxTotal,
-            'import_tax_total' => $importTaxTotal,
-            'final_taxes_total' => $salesTaxTotal + $importTaxTotal,
-            'final_receipt_total' => $finalProductsCost + $salesTaxTotal + $importTaxTotal,
-            'receipt_content' => $contentBody
+                'final_product_cost_total' => $finalProductsCost,
+                'sales_tax_total' => $salesTaxTotal,
+                'import_tax_total' => $importTaxTotal,
+                'final_taxes_total' => $totalTaxes,
+                'final_receipt_total' => ($finalProductsCost + $totalTaxes),
+                'receipt_content' => $contentBody
             ]
         );
 

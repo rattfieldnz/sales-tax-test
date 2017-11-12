@@ -78,7 +78,7 @@ class ReceiptDataTable extends DataTable
             'import_tax_total',
             'final_taxes_total',
             'final_receipt_total',
-            'receipt_content_total'
+            'receipt_content'
         ];
     }
 
