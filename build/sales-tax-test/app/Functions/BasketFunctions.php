@@ -6,6 +6,7 @@ use App\Interfaces\BasketInterface;
 use App\Models\Basket;
 use App\Models\Product;
 use App\Models\Receipt;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class BasketFunctions
@@ -40,6 +41,23 @@ class BasketFunctions implements BasketInterface
     public function getProducts()
     {
         return $this->basket->products()->get();
+    }
+
+    /**
+     * Add a collection of products to a basket.
+     *
+     * @param \Illuminate\Database\Eloquent\Collection $products
+     * @param \App\Models\Basket                       $basket
+     */
+    public static function addProducts(Collection $products, Basket $basket){
+        if(!empty($basket)){
+            foreach($products as $p){
+                if($p instanceof Product)
+                {
+                    $basket->products()->attach($p->id);
+                }
+            }
+        }
     }
 
     /**
@@ -108,9 +126,13 @@ class BasketFunctions implements BasketInterface
             $this->getFinalTaxesTotal();
     }
 
+    /**
+     * Create and return a receipt for the current basket.
+     *
+     * @return \App\Models\Receipt
+     */
     public function createReceipt()
     {
-
         $contentBody = "";
         $finalProductsCost = 0.0;
         $salesTaxTotal = 0.0;
@@ -148,6 +170,8 @@ class BasketFunctions implements BasketInterface
             $this->basket->receipt_id = $receipt->id;
             $this->basket->save();
         }
+
+        return $receipt;
 
     }
 }
