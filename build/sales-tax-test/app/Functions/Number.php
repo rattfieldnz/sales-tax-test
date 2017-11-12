@@ -15,24 +15,26 @@ class Number
     /**
      * Round a number to the nearest x value.
      *
-     * @param       $num
+     * @param $num
      * @param float $nearest
      *
      * @return float
      */
-    public static function roundNumber($num, $nearest = 0.05){
-        return floatval(round($num / $nearest,1, 1) * $nearest);
+    public static function roundNumber($num, $nearest = 0.05)
+    {
+        return floatval(round($num / $nearest, 1, 1) * $nearest);
     }
 
     /**
      * Calculate tax value of given price.
      *
-     * @param     $price
-     * @param int $taxPercent
+     * @param $price
+     * @param int   $taxPercent
      *
      * @return float
      */
-    public static function calculateTax($price, int $taxPercent){
+    public static function calculateTax($price, int $taxPercent)
+    {
         $tax = ($taxPercent*$price)/100;
         return self::roundNumber(self::roundUpTo5Cents($tax));
     }
@@ -44,13 +46,15 @@ class Number
      *
      * @return float
      */
-    public static function roundUpTo5Cents($value) {
+    public static function roundUpTo5Cents($value) 
+    {
 
         $money = new Decimal2(strval($value));
         return floatval(strval(Decimal2::roundUpTo5Cents($money)));
     }
 
-    public static function pad($number){
+    public static function pad($number)
+    {
 
     }
 }

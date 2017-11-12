@@ -47,13 +47,13 @@ class BasketFunctions implements BasketInterface
      * Add a collection of products to a basket.
      *
      * @param \Illuminate\Support\Collection $products
-     * @param \App\Models\Basket                                                      $basket
+     * @param \App\Models\Basket             $basket
      */
-    public static function addProducts(Collection $products, Basket $basket){
-        if(!empty($basket)){
+    public static function addProducts(Collection $products, Basket $basket)
+    {
+        if(!empty($basket)) {
             foreach($products as $p){
-                if($p instanceof Product)
-                {
+                if($p instanceof Product) {
                     $basket->products()->attach($p->id);
                 }
             }
@@ -149,22 +149,22 @@ class BasketFunctions implements BasketInterface
             $salesTaxTotal += ((new ProductFunctions($product))->getSalesTaxCost() * $productCount);
             $importTaxTotal += ((new ProductFunctions($product))->getImportTaxCost() * $productCount);
 
-            $contentBody .= ($productCount) . ' ' . $productDescription . ': ' . money_format('%i',$costsTaxInclusive);
+            $contentBody .= ($productCount) . ' ' . $productDescription . ': ' . money_format('%i', $costsTaxInclusive);
             $count != count($this->getProducts()) ? $contentBody .= "\n" : null;
             $count++;
         }
 
         $totalTaxes = ($salesTaxTotal + $importTaxTotal);
-        $contentBody .= "\nSales Taxes: " . money_format('%i',$totalTaxes);
-        $contentBody .= "\nTotal: " . money_format('%i',($finalProductsCost + $totalTaxes));
+        $contentBody .= "\nSales Taxes: " . money_format('%i', $totalTaxes);
+        $contentBody .= "\nTotal: " . money_format('%i', ($finalProductsCost + $totalTaxes));
 
         $receipt = new Receipt(
             [
-                'final_product_cost_total' => money_format('%i',$finalProductsCost),
-                'sales_tax_total' => money_format('%i',$salesTaxTotal),
-                'import_tax_total' => money_format('%i',$importTaxTotal),
-                'final_taxes_total' => money_format('%i',$totalTaxes),
-                'final_receipt_total' => money_format('%i',($finalProductsCost + $totalTaxes)),
+                'final_product_cost_total' => money_format('%i', $finalProductsCost),
+                'sales_tax_total' => money_format('%i', $salesTaxTotal),
+                'import_tax_total' => money_format('%i', $importTaxTotal),
+                'final_taxes_total' => money_format('%i', $totalTaxes),
+                'final_receipt_total' => money_format('%i', ($finalProductsCost + $totalTaxes)),
                 'receipt_content' => $contentBody
             ]
         );

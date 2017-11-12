@@ -11,8 +11,9 @@ abstract class SeederFunctions extends Seeder
      * @param \App\Models\Product $product
      * @return void
      */
-    public function productSeeded(Product $product){
-        if(!empty($product)){
+    public function productSeeded(Product $product)
+    {
+        if(!empty($product)) {
             $this->command->info("== Product Seeded ==");
             $this->command->info("ID: " . $product->id);
             $this->command->info("Description: " . $product->description);
@@ -28,13 +29,15 @@ abstract class SeederFunctions extends Seeder
      * @param \Illuminate\Support\Collection $products
      * @return void
      */
-    public function basketSeededAndFilled(Collection $products){
+    public function basketSeededAndFilled(Collection $products)
+    {
 
         $this->command->info("Created basket, added " . count($products) . " products.");
         $this->command->info("                                                        ");
     }
 
-    public function receiptCreated(Receipt $receipt){
+    public function receiptCreated(Receipt $receipt)
+    {
 
         $this->command->info("Created receipt with ID => " . $receipt->id . ".");
         $this->command->info("                                                ");
