@@ -160,11 +160,11 @@ class BasketFunctions implements BasketInterface
 
         $receipt = new Receipt(
             [
-                'final_product_cost_total' => $finalProductsCost,
-                'sales_tax_total' => $salesTaxTotal,
-                'import_tax_total' => $importTaxTotal,
-                'final_taxes_total' => $totalTaxes,
-                'final_receipt_total' => ($finalProductsCost + $totalTaxes),
+                'final_product_cost_total' => money_format('%i',$finalProductsCost),
+                'sales_tax_total' => money_format('%i',$salesTaxTotal),
+                'import_tax_total' => money_format('%i',$importTaxTotal),
+                'final_taxes_total' => money_format('%i',$totalTaxes),
+                'final_receipt_total' => money_format('%i',($finalProductsCost + $totalTaxes)),
                 'receipt_content' => $contentBody
             ]
         );
