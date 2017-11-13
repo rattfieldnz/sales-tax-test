@@ -44,6 +44,24 @@ class BasketFunctions implements BasketInterface
     }
 
     /**
+     * Get amount of product x there is in the basket/receipt.
+     *
+     * @param \App\Models\Product $product
+     *
+     * @return int|null
+     */
+    public function getProductCount(Product $product)
+    {
+        $receipt = $this->getReceipt();
+
+        if(!empty($receipt) && !empty($product)) {
+            return count($receipt->products()->where('id', $product->id)->get());
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Add a collection of products to a basket.
      *
      * @param \Illuminate\Support\Collection $products
@@ -165,10 +183,10 @@ class BasketFunctions implements BasketInterface
                 'import_tax_total' => money_format('%i', $importTaxTotal),
                 'final_taxes_total' => money_format('%i', $totalTaxes),
                 'final_receipt_total' => money_format('%i', ($finalProductsCost + $totalTaxes)),
-                'receipt_content' => $contentBody
+                'receipt_content' => $contentBody,
+                'basket_id' => $this->basket->id
             ]
         );
-
         $receipt->save();
 
         if(!empty($receipt)) {

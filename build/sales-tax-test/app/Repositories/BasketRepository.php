@@ -3,15 +3,14 @@
 namespace App\Repositories;
 
 use App\Models\Basket;
-use Illuminate\Container\Container as Application;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
  * Class BasketRepository
  *
- * @package App\Repositories
- * @version November 11, 2017, 1:44 pm NZDT
  * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Repositories
+ * @version November 13, 2017, 9:30 am NZDT
  *
  * @method Basket findWithoutFail($id, $columns = ['*'])
  * @method Basket find($id, $columns = ['*'])
@@ -19,16 +18,6 @@ use InfyOm\Generator\Common\BaseRepository;
  */
 class BasketRepository extends BaseRepository
 {
-    /**
-     * BasketRepository constructor.
-     *
-     * @param \Illuminate\Container\Container $app
-     */
-    public function __construct(Application $app)
-    {
-        parent::__construct($app);
-    }
-
     /**
      * @var array
      */

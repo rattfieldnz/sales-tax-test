@@ -41,7 +41,8 @@ class Receipt extends Model
         'import_tax_total',
         'final_taxes_total',
         'final_receipt_total',
-        'receipt_content'
+        'receipt_content',
+        'basket_id'
     ];
 
     /**
@@ -56,7 +57,8 @@ class Receipt extends Model
         'import_tax_total' => 'float',
         'final_taxes_total' => 'float',
         'final_receipt_total' => 'float',
-        'receipt_content' => 'string'
+        'receipt_content' => 'string',
+        'basket_id' => 'integer'
     ];
 
     /**
@@ -70,7 +72,8 @@ class Receipt extends Model
         'import_tax_total' => 'required|float|min:0.0|max:999999.99',
         'final_taxes_total' => 'required|float|min:0.0|max:999999.99',
         'final_receipt_total' => 'required|float|min:0.0|max:999999.99',
-        'receipt_content' => 'required|string'
+        'receipt_content' => 'required|string',
+        'basket_id' => 'required|integer|exists:baskets,id'
     ];
 
     /**

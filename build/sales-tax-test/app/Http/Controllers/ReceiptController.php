@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\ReceiptDataTable;
-use App\Http\Requests;
+use App\Functions\BasketFunctions;
 use App\Http\Requests\CreateReceiptRequest;
 use App\Http\Requests\UpdateReceiptRequest;
+use App\Models\Basket;
 use App\Repositories\ReceiptRepository;
+use Illuminate\Http\Request;
 use Flash;
-use App\Http\Controllers\AppBaseController;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 /**
@@ -27,18 +28,22 @@ class ReceiptController extends AppBaseController
     public function __construct(ReceiptRepository $receiptRepo)
     {
         $this->receiptRepository = $receiptRepo;
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth');
     }
 
     /**
      * Display a listing of the Receipt.
      *
-     * @param  ReceiptDataTable $receiptDataTable
+     * @param  Request $request
      * @return Response
      */
-    public function index(ReceiptDataTable $receiptDataTable)
+    public function index(Request $request)
     {
-        return $receiptDataTable->render('receipts.index');
+        $this->receiptRepository->pushCriteria(new RequestCriteria($request));
+        $receipts = $this->receiptRepository->all();
+
+        return view('receipts.index')
+            ->with('receipts', $receipts);
     }
 
     /**
@@ -85,8 +90,22 @@ class ReceiptController extends AppBaseController
 
             return redirect(route('receipts.index'));
         }
+        $basket = $receipt->basket()->first();
 
-        return view('receipts.show')->with('receipt', $receipt);
+        /**
+ * @var Basket $basket 
+*/
+        $basketFunctions = new BasketFunctions($basket);
+        $receiptProducts = $receipt->products()->get();
+        $totalTaxes = money_format('%i', $basketFunctions->getFinalTaxesTotal());
+        $finalReceiptTotal = money_format('%i', $basketFunctions->getFinalTotalCosts());
+
+        return view('receipts.show')
+            ->with('receipt', $receipt)
+            ->with('basketFunctions', $basketFunctions)
+            ->with('receiptProducts', $receiptProducts)
+            ->with('totalTaxes', $totalTaxes)
+            ->with('finalReceiptTotal', $finalReceiptTotal);
     }
 
     /**

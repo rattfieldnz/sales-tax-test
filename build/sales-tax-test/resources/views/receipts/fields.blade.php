@@ -28,10 +28,10 @@
     {!! Form::number('final_receipt_total', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Receipt Content Total Field -->
+<!-- Receipt Content Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('receipt_content_total', 'Receipt Content Total:') !!}
-    {!! Form::textarea('receipt_content_total', null, ['class' => 'form-control']) !!}
+    {!! Form::label('receipt_content', 'Receipt Content:') !!}
+    {!! Form::textarea('receipt_content', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

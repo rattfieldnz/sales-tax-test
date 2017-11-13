@@ -3,15 +3,14 @@
 namespace App\Repositories;
 
 use App\Models\Product;
-use Illuminate\Container\Container as Application;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
  * Class ProductRepository
  *
- * @package App\Repositories
- * @version November 11, 2017, 1:43 pm NZDT
  * @author  Rob Attfield <emailme@robertattfield.com> <http://www.robertattfield.com>
+ * @package App\Repositories
+ * @version November 13, 2017, 9:29 am NZDT
  *
  * @method Product findWithoutFail($id, $columns = ['*'])
  * @method Product find($id, $columns = ['*'])
@@ -19,16 +18,6 @@ use InfyOm\Generator\Common\BaseRepository;
  */
 class ProductRepository extends BaseRepository
 {
-    /**
-     * ProductRepository constructor.
-     *
-     * @param \Illuminate\Container\Container $app
-     */
-    public function __construct(Application $app)
-    {
-        parent::__construct($app);
-    }
-
     /**
      * @var array
      */

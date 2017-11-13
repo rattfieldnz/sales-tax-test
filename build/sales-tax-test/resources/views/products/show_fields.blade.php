@@ -13,7 +13,7 @@
 <!-- Price Field -->
 <div class="form-group">
     {!! Form::label('price', 'Price:') !!}
-    <p>{!! $product->price !!}</p>
+    <p>{!! money_format('%i',$product->price) !!}</p>
 </div>
 
 <!-- Sales Tax Percent Field -->

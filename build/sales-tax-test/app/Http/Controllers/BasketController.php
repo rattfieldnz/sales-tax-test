@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\BasketDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateBasketRequest;
 use App\Http\Requests\UpdateBasketRequest;
 use App\Repositories\BasketRepository;
-use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Flash;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 /**
@@ -27,18 +27,23 @@ class BasketController extends AppBaseController
     public function __construct(BasketRepository $basketRepo)
     {
         $this->basketRepository = $basketRepo;
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth');
+
     }
 
     /**
      * Display a listing of the Basket.
      *
-     * @param  BasketDataTable $basketDataTable
+     * @param  Request $request
      * @return Response
      */
-    public function index(BasketDataTable $basketDataTable)
+    public function index(Request $request)
     {
-        return $basketDataTable->render('baskets.index');
+        $this->basketRepository->pushCriteria(new RequestCriteria($request));
+        $baskets = $this->basketRepository->all();
+
+        return view('baskets.index')
+            ->with('baskets', $baskets);
     }
 
     /**
