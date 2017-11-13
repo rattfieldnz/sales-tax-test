@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * A utility to speed up generation of unit tests.
+ * Please see 'unitgen-config.php' for configuration,
+ * and https://github.com/AlexyAV/unitgen for documentation.
+ */
+require __DIR__ . 'vendor/autoload.php';
+
+$app = new \Symfony\Component\Console\Application();
+
+$app->add(new \Unitgen\console\command\RunCommand);
+
+$app->run();

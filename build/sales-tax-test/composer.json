@@ -15,9 +15,7 @@
         "laravelcollective/html": "^5.5",
         "league/fractal": "^0.17.0",
         "mews/purifier": "~2.0",
-        "psr/http-message": "^1.0",
-        "yajra/laravel-datatables": "^1.0",
-        "yajra/laravel-datatables-oracle": "~8.0"
+        "psr/http-message": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
@@ -34,7 +32,8 @@
         "sentry/sentry-laravel": "^0.8.0",
         "squizlabs/php_codesniffer": "^3.1",
         "symfony/css-selector": "3.4.x-dev",
-        "symfony/dom-crawler": "3.4.x-dev"
+        "symfony/dom-crawler": "3.4.x-dev",
+        "unitgen/unitgen": "dev-master"
     },
     "autoload": {
         "classmap": [
@@ -58,7 +57,9 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "chown -R www-data:www-data storage/",
+            "chmod -R 755 storage/"
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate"
@@ -69,7 +70,8 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
+            "php artisan optimize",
+            "chmod u+x unitgen"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
