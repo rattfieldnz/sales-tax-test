@@ -60,15 +60,29 @@
 
 <div class="form-group">
 
-    <p><strong>Output {{ $receipt->id }}:</strong></p>
-    @foreach($receipt->products()->get() as $p)
-        <p>
-            {{ $basketFunctions->getProductCount($p) }}
-            {{ $p->description }}:
-            {{ money_format('%i',(new \App\Functions\ProductFunctions($p))->finalCost()) }}
-        </p>
-    @endforeach
-    <p>Sales Taxes: {{ $totalTaxes }}</p>
-    <p>Total: {{ $finalReceiptTotal }}</p>
+    <div class="row">
+        <div class="col-sm-3 input-test">
+            <p><strong>Input {{ $receipt->id }}:</strong></p>
+            @foreach($receipt->products()->get() as $p)
+                <p>
+                    {!! $basketFunctions->getProductCount($p) !!}
+                    {!! $p->description !!} at
+                    {!! money_format('%i',(new \App\Functions\ProductFunctions($p))->getPrice()) !!}
+                </p>
+            @endforeach
+        </div>
+        <div class="col-sm-3 output-test">
+            <p><strong>Output {{ $receipt->id }}:</strong></p>
+            @foreach($receipt->products()->get() as $p)
+                <p>
+                    {!! $basketFunctions->getProductCount($p) !!}
+                    {!! $p->description !!}:
+                    {!! money_format('%i',(new \App\Functions\ProductFunctions($p))->finalCost()) !!}
+                </p>
+            @endforeach
+            <p>Sales Taxes: {!! $totalTaxes !!}</p>
+            <p>Total: {!! $finalReceiptTotal !!}</p>
+        </div>
+    </div>
 
 </div>

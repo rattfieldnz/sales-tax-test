@@ -18,7 +18,8 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                    @include('products.table')
+                <p>Total Sales and Import taxes are rounded up to the nearest 5 cents (0.05).</p>
+                @include('products.table')
             </div>
         </div>
     </div>

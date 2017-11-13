@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Functions\ProductFunctions;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Repositories\ProductRepository;
@@ -90,7 +91,11 @@ class ProductController extends AppBaseController
             return redirect(route('products.index'));
         }
 
-        return view('products.show')->with('product', $product);
+        $priceIncludingTaxes = (new ProductFunctions($product))->finalCost();
+
+        return view('products.show')
+            ->with('product', $product)
+            ->with('priceIncludingTaxes', $priceIncludingTaxes);
     }
 
     /**

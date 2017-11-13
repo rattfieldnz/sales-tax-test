@@ -13,7 +13,13 @@
     <tbody>
     @foreach($receipts as $receipt)
         <tr>
-            <td><strong>Input {{ $receipt->id }} Receipt (Output {{ $receipt->id }})</strong></td>
+            <td>
+                <strong>
+                    <a href="{!! route('receipts.show', $receipt->id) !!}">
+                        Input {{ $receipt->id }} Receipt (Output {{ $receipt->id }})
+                    </a>
+                </strong>
+            </td>
             <td>{!! money_format('%i',$receipt->final_product_cost_total) !!}</td>
             <td>{!! money_format('%i',$receipt->sales_tax_total) !!}</td>
             <td>{!! money_format('%i',$receipt->import_tax_total) !!}</td>

@@ -132,7 +132,11 @@ class BasketController extends AppBaseController
             return redirect(route('baskets.index'));
         }
 
-        $basket = $this->basketRepository->update($request->all(), $id);
+        $data = $request->all();
+
+        $data['receipt_id'] = $basket->receipt()->first()->id;
+
+        $basket = $this->basketRepository->update($data, $id);
 
         Flash::success('Basket updated successfully.');
 
