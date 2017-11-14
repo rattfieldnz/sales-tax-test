@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Receipt;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UpdateReceiptRequest
@@ -21,7 +22,7 @@ class UpdateReceiptRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return !empty(Auth::user());
     }
 
     /**

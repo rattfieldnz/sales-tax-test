@@ -58,7 +58,7 @@ class Product extends Model
      */
     public static $rules = [
         'description' => 'required|string|min:2|max:255',
-        'price' => 'required|numeric|min:0.0|max:9999.99',
+        'price' => 'required|numeric|min:0.00|max:9999.99',
         'sales_tax_percent' => 'required|integer|min:0',
         'import_tax_percent' => 'required|integer|min:0'
     ];

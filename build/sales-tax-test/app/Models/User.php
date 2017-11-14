@@ -33,4 +33,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isNotDemoUser()
+    {
+        if ($this->attributes['email'] != "demo@salestaxtest.com") {
+            return true;
+        }
+        return false;
+    }
 }

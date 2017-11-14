@@ -17,18 +17,29 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // We only want to seed a test user in a local environment.
-        if(config('app.env') == 'local') {
-            $user = new User(
-                [
+        $user = new User(
+            [
                 'name' => config('app.user_name'),
                 'email' => config('app.user_email'),
                 'password' => bcrypt(config('app.user_password'))
+            ]
+        );
+        $user->save();
+
+        $this->command->info("Seeded test user: name => " . $user->name . ", email => " . $user->email);
+
+        // We only want to seed a demo user in a local environment.
+        if(config('app.env') == 'local') {
+            $demoUser = new User(
+                [
+                    'name' => "Demo Demo",
+                    'email' => "demo@salestaxtest.com",
+                    'password' => bcrypt("demo")
                 ]
             );
-            $user->save();
+            $demoUser->save();
 
-            $this->command->info("Seeded test user: name => " . $user->name . ", email => " . $user->email);
+            $this->command->info("Seeded demo user: name => " . $demoUser->name . ", email => " . $demoUser->email);
         }
 
     }

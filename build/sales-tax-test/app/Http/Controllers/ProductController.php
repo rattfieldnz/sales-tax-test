@@ -9,6 +9,7 @@ use App\Repositories\ProductRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -67,9 +68,13 @@ class ProductController extends AppBaseController
     {
         $input = $request->all();
 
-        $product = $this->productRepository->create($input);
+        if (Auth::user()->isNotDemoUser()) {
+            $product = $this->productRepository->create($input);
 
-        Flash::success('Product saved successfully.');
+            Flash::success('Product saved successfully.');
+        } else {
+            Flash::warning('Demo user cannot create new Product data.');
+        }
 
         return redirect(route('products.index'));
     }
@@ -136,9 +141,13 @@ class ProductController extends AppBaseController
             return redirect(route('products.index'));
         }
 
-        $product = $this->productRepository->update($request->all(), $id);
+        if (Auth::user()->isNotDemoUser()) {
+            $product = $this->productRepository->update($request->all(), $id);
 
-        Flash::success('Product updated successfully.');
+            Flash::success('Product updated successfully.');
+        } else {
+            Flash::warning('Demo user cannot update Product data.');
+        }
 
         return redirect(route('products.index'));
     }
@@ -160,9 +169,13 @@ class ProductController extends AppBaseController
             return redirect(route('products.index'));
         }
 
-        $this->productRepository->delete($id);
+        if (Auth::user()->isNotDemoUser()) {
+            $this->productRepository->delete($id);
 
-        Flash::success('Product deleted successfully.');
+            Flash::success('Product deleted successfully.');
+        } else {
+            Flash::warning('Demo user cannot delete Product data.');
+        }
 
         return redirect(route('products.index'));
     }

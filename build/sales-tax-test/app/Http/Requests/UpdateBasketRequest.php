@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Basket;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UpdateBasketRequest
@@ -21,7 +22,7 @@ class UpdateBasketRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return !empty(Auth::user());
     }
 
     /**

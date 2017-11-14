@@ -66,11 +66,11 @@ class Receipt extends Model
      * @var array
      */
     public static $rules = [
-        'final_product_cost_total' => 'required|float|min:0.0|max:999999.99',
-        'sales_tax_total' => 'required|float|min:0.0|max:999999.99',
-        'import_tax_total' => 'required|float|min:0.0|max:999999.99',
-        'final_taxes_total' => 'required|float|min:0.0|max:999999.99',
-        'final_receipt_total' => 'required|float|min:0.0|max:999999.99',
+        'final_product_cost_total' => 'required|numeric|min:0.00|max:999999.99',
+        'sales_tax_total' => 'required|numeric|min:0.00|max:999999.99',
+        'import_tax_total' => 'required|numeric|min:0.00|max:999999.99',
+        'final_taxes_total' => 'required|numeric|min:0.00|max:999999.99',
+        'final_receipt_total' => 'required|numeric|min:0.00|max:999999.99',
         'receipt_content' => 'required|string',
         'basket_id' => 'required|integer|exists:baskets,id'
     ];

@@ -8,6 +8,7 @@ use App\Repositories\BasketRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -66,9 +67,12 @@ class BasketController extends AppBaseController
     {
         $input = $request->all();
 
-        $basket = $this->basketRepository->create($input);
-
-        Flash::success('Basket saved successfully.');
+        if (Auth::user()->isNotDemoUser()) {
+            $basket = $this->basketRepository->create($input);
+            Flash::success('Basket saved successfully.');
+        } else {
+            Flash::warning('Demo user cannot save new Basket data.');
+        }
 
         return redirect(route('baskets.index'));
     }
@@ -135,9 +139,13 @@ class BasketController extends AppBaseController
 
         $data['receipt_id'] = $basket->receipt()->first()->id;
 
-        $basket = $this->basketRepository->update($data, $id);
+        if (Auth::user()->isNotDemoUser()) {
+            $basket = $this->basketRepository->update($data, $id);
 
-        Flash::success('Basket updated successfully.');
+            Flash::success('Basket updated successfully.');
+        } else {
+            Flash::warning('Demo user cannot save edited Basket data.');
+        }
 
         return redirect(route('baskets.index'));
     }
@@ -159,9 +167,13 @@ class BasketController extends AppBaseController
             return redirect(route('baskets.index'));
         }
 
-        $this->basketRepository->delete($id);
+        if (Auth::user()->isNotDemoUser()) {
+            $this->basketRepository->delete($id);
 
-        Flash::success('Basket deleted successfully.');
+            Flash::success('Basket deleted successfully.');
+        } else {
+            Flash::warning('Demo user cannot delete Basket data.');
+        }
 
         return redirect(route('baskets.index'));
     }

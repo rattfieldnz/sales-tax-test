@@ -9,6 +9,7 @@ use App\Models\Basket;
 use App\Repositories\ReceiptRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -53,7 +54,9 @@ class ReceiptController extends AppBaseController
      */
     public function create()
     {
-        return view('receipts.create');
+        $baskets = Basket::where('deleted_at', '=', null)->get();
+
+        return view('receipts.create')->with('baskets', $baskets);
     }
 
     /**
@@ -67,9 +70,13 @@ class ReceiptController extends AppBaseController
     {
         $input = $request->all();
 
-        $receipt = $this->receiptRepository->create($input);
+        if (Auth::user()->isNotDemoUser()) {
+            $receipt = $this->receiptRepository->create($input);
 
-        Flash::success('Receipt saved successfully.');
+            Flash::success('Receipt saved successfully.');
+        } else {
+            Flash::warning('Demo user cannot create new Receipt data.');
+        }
 
         return redirect(route('receipts.index'));
     }
@@ -118,6 +125,7 @@ class ReceiptController extends AppBaseController
     public function edit($id)
     {
         $receipt = $this->receiptRepository->findWithoutFail($id);
+        $baskets = Basket::where('deleted_at', '=', null)->get();
 
         if (empty($receipt)) {
             Flash::error('Receipt not found');
@@ -125,7 +133,10 @@ class ReceiptController extends AppBaseController
             return redirect(route('receipts.index'));
         }
 
-        return view('receipts.edit')->with('receipt', $receipt);
+        return view('receipts.edit')
+            ->with('receipt', $receipt)
+            ->with('baskets', $baskets);
+        ;
     }
 
     /**
@@ -146,9 +157,13 @@ class ReceiptController extends AppBaseController
             return redirect(route('receipts.index'));
         }
 
-        $receipt = $this->receiptRepository->update($request->all(), $id);
+        if (Auth::user()->isNotDemoUser()) {
+            $receipt = $this->receiptRepository->update($request->all(), $id);
 
-        Flash::success('Receipt updated successfully.');
+            Flash::success('Receipt updated successfully.');
+        } else {
+            Flash::warning('Demo user cannot update Receipt data.');
+        }
 
         return redirect(route('receipts.index'));
     }
@@ -170,9 +185,13 @@ class ReceiptController extends AppBaseController
             return redirect(route('receipts.index'));
         }
 
-        $this->receiptRepository->delete($id);
+        if (Auth::user()->isNotDemoUser()) {
+            $this->receiptRepository->delete($id);
 
-        Flash::success('Receipt deleted successfully.');
+            Flash::success('Receipt deleted successfully.');
+        } else {
+            Flash::warning('Demo user cannot delete Receipt data.');
+        }
 
         return redirect(route('receipts.index'));
     }
