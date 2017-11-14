@@ -46,7 +46,7 @@ class Number
      *
      * @return float
      */
-    public static function roundUpTo5Cents($value) 
+    public static function roundUpTo5Cents($value)
     {
         $money = new Decimal2(strval($value));
         return floatval(strval(Decimal2::roundUpTo5Cents($money)));
@@ -60,12 +60,13 @@ class Number
      *
      * @return \MoneyMath\Decimal2
      */
-    public static function roundUpToX($number, int $nearest = 0) {
+    public static function roundUpToX($number, int $nearest = 0)
+    {
         $dc2Number = new Decimal2(strval($number));
         $lastDigit = intval(substr(strval($dc2Number), -1));
         $addition = 0;
 
-        if($nearest == 0){
+        if ($nearest == 0) {
             return $number;
         }
 

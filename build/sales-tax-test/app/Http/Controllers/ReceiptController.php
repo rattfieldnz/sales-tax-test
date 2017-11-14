@@ -21,7 +21,7 @@ use Response;
 class ReceiptController extends AppBaseController
 {
     /**
-     * @var  ReceiptRepository 
+     * @var  ReceiptRepository
      */
     private $receiptRepository;
 
@@ -93,7 +93,7 @@ class ReceiptController extends AppBaseController
         $basket = $receipt->basket()->first();
 
         /**
- * @var Basket $basket 
+ * @var Basket $basket
 */
         $basketFunctions = new BasketFunctions($basket);
         $receiptProducts = $receipt->products()->get();

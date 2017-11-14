@@ -100,15 +100,15 @@ class ReceiptFunctionsTest extends TestCase
         parent::tearDown();
     }
 
-    private function generateReceiptFunctions(){
+    private function generateReceiptFunctions()
+    {
 
         $receiptFunctionsArray = [];
 
-        foreach(Receipt::all() as $r){
+        foreach (Receipt::all() as $r) {
             $receiptFunctionsArray[$r->id] = new ReceiptFunctions($r);
         }
 
         return $receiptFunctionsArray;
     }
-
 }

@@ -19,15 +19,15 @@ class NumberTest extends TestCase
         $this->assertEquals(23.50, Number::roundNumber(23.4567890123));
         $this->assertEquals(0.05, Number::roundNumber(0.04));
         $this->assertEquals(0.05, Number::roundNumber(0.02));
-        $this->assertEquals(0.03, Number::roundNumber(0.02,3));
+        $this->assertEquals(0.03, Number::roundNumber(0.02, 3));
         $this->assertEquals(98765.45, Number::roundNumber(98765.43210));
-        $this->assertEquals(98765.44, Number::roundNumber(98765.43210,4));
-        $this->assertEquals(98765.43, Number::roundNumber(98765.43210,3));
+        $this->assertEquals(98765.44, Number::roundNumber(98765.43210, 4));
+        $this->assertEquals(98765.43, Number::roundNumber(98765.43210, 3));
     }
 
     public function testCalculateTax()
     {
-        $this->assertEquals(0, Number::calculateTax(12.49,0));
+        $this->assertEquals(0, Number::calculateTax(12.49, 0));
         $this->assertEquals(4.75, Number::calculateTax(47.50, 10));
         $this->assertEquals(2.40, Number::calculateTax(47.50, 5));
         $this->assertEquals(1.00, Number::calculateTax(100, 1));
@@ -45,7 +45,8 @@ class NumberTest extends TestCase
         $this->assertEquals(100, Number::roundUpTo5Cents(99.96));
     }
 
-    public function testRoundUpToX(){
+    public function testRoundUpToX()
+    {
         $this->assertEquals(12.49, Number::roundUpToX(12.49, 0));
         $this->assertEquals(12.491, Number::roundUpToX(12.491, 0.1));
         $this->assertEquals(12.50, Number::roundUpToX(12.49, 5));
@@ -57,5 +58,4 @@ class NumberTest extends TestCase
     {
         parent::tearDown();
     }
-
 }

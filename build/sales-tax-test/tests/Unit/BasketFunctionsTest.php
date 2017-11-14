@@ -163,7 +163,8 @@ class BasketFunctionsTest extends TestCase
      *
      * @return void
      */
-    private function generateReceiptTest(\App\Models\Receipt $receipt, array $testInput){
+    private function generateReceiptTest(\App\Models\Receipt $receipt, array $testInput)
+    {
 
         $this->assertEquals($receipt->id, $testInput['id']);
         $this->assertEquals($receipt->final_product_cost_total, $testInput['final_product_cost_total']);
@@ -174,5 +175,4 @@ class BasketFunctionsTest extends TestCase
         $this->assertEquals($receipt->receipt_content, $testInput['receipt_content']);
         $this->assertEquals($receipt->basket_id, $testInput['basket_id']);
     }
-
 }

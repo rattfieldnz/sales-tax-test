@@ -21,7 +21,7 @@ use Response;
 class ProductController extends AppBaseController
 {
     /**
-     * @var  ProductRepository 
+     * @var  ProductRepository
      */
     private $productRepository;
 

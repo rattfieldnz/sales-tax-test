@@ -20,7 +20,7 @@ use Response;
 class BasketController extends AppBaseController
 {
     /**
-     * @var  BasketRepository 
+     * @var  BasketRepository
      */
     private $basketRepository;
 
@@ -28,7 +28,6 @@ class BasketController extends AppBaseController
     {
         $this->basketRepository = $basketRepo;
         $this->middleware('auth');
-
     }
 
     /**

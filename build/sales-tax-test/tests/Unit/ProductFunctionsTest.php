@@ -137,15 +137,15 @@ class ProductFunctionsTest extends TestCase
         parent::tearDown();
     }
 
-    private function generateProductFunctions(){
+    private function generateProductFunctions()
+    {
 
         $productFunctionsArray = [];
 
-        foreach(Product::all() as $p){
+        foreach (Product::all() as $p) {
             $productFunctionsArray[$p->id] = new ProductFunctions($p);
         }
 
         return $productFunctionsArray;
     }
-
 }

@@ -54,7 +54,7 @@ class BasketFunctions implements BasketInterface
     {
         $receipt = $this->getReceipt();
 
-        if(!empty($receipt) && !empty($product)) {
+        if (!empty($receipt) && !empty($product)) {
             return count($receipt->products()->where('id', $product->id)->get());
         } else {
             return null;
@@ -69,9 +69,9 @@ class BasketFunctions implements BasketInterface
      */
     public static function addProducts(Collection $products, Basket $basket)
     {
-        if(!empty($basket)) {
-            foreach($products as $p){
-                if($p instanceof Product) {
+        if (!empty($basket)) {
+            foreach ($products as $p) {
+                if ($p instanceof Product) {
                     $basket->products()->attach($p->id);
                 }
             }
@@ -98,7 +98,7 @@ class BasketFunctions implements BasketInterface
     {
         $salesTaxTotal = 0.0;
 
-        foreach($this->getProducts() as $product){
+        foreach ($this->getProducts() as $product) {
             $salesTaxTotal += (new ProductFunctions($product))->getSalesTaxCost();
         }
 
@@ -114,7 +114,7 @@ class BasketFunctions implements BasketInterface
     {
         $importTaxTotal = 0.0;
 
-        foreach($this->getProducts() as $product){
+        foreach ($this->getProducts() as $product) {
             $importTaxTotal += (new ProductFunctions($product))->getImportTaxCost();
         }
 
@@ -157,7 +157,7 @@ class BasketFunctions implements BasketInterface
         $importTaxTotal = 0.00;
 
         $count = 1;
-        foreach($this->getProducts() as $product){
+        foreach ($this->getProducts() as $product) {
             $productCount = count($this->getProducts()->where('id', '=', $product->id)->all());
 
             $productDescription = (new ProductFunctions($product))->getDescription();
@@ -189,12 +189,11 @@ class BasketFunctions implements BasketInterface
         );
         $receipt->save();
 
-        if(!empty($receipt)) {
+        if (!empty($receipt)) {
             $this->basket->receipt_id = $receipt->id;
             $this->basket->save();
         }
 
         return $receipt;
-
     }
 }
