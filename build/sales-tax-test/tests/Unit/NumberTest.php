@@ -1,6 +1,6 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class NumberTest extends TestCase
 {

@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Basket;
-use Eloquent as Model;
+use \Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
