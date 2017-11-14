@@ -1,0 +1,1 @@
+php build/sales-tax-test/artisan migrate --seed
