@@ -21,9 +21,9 @@ class UsersTableSeeder extends Seeder
         if(config('app.env') == 'local') {
             $user = new User(
                 [
-                'name' => "Sales Tax Test Admin",
-                'email' => "admin@salestaxtest.com",
-                'password' => bcrypt("P@ssw0rd55")
+                'name' => config('app.user_name'),
+                'email' => config('app.user_email'),
+                'password' => bcrypt(config('app.user_password'))
                 ]
             );
             $user->save();
