@@ -7,7 +7,7 @@ use Tests\TestCase;
 class BasketFunctionsTest extends TestCase
 {
     private $basketOne, $basketTwo, $basketThree;
-    private $basketFunctionsOne, $basketFunctionsTwo, $basketFunctionsThree;
+    private $basketOneFunctions, $basketTwoFunctions, $basketThreeFunctions;
 
     public function setUp()
     {
@@ -16,16 +16,15 @@ class BasketFunctionsTest extends TestCase
         $this->basketTwo = Basket::where('id', 2)->first();
         $this->basketThree = Basket::where('id', 3)->first();
 
-        $this->basketFunctionsOne = new BasketFunctions($this->basketOne);
-        $this->basketFunctionsTwo = new BasketFunctions($this->basketTwo);
-        $this->basketFunctionsThree = new BasketFunctions($this->basketThree);
+        $this->basketOneFunctions = new BasketFunctions($this->basketOne);
+        $this->basketTwoFunctions = new BasketFunctions($this->basketTwo);
+        $this->basketThreeFunctions = new BasketFunctions($this->basketThree);
     }
 
     public function testGetReceipt()
     {
         /**  Test functionality for first basket **/
 
-        //Arrange known values to compare with.
         $testInputOne = [
             'id' => 1,
             'final_product_cost_total' => 28.33,
@@ -37,12 +36,9 @@ class BasketFunctionsTest extends TestCase
             'basket_id' => 1
         ];
 
-        // Get receipt of first basket
-        $receiptOne = $this->basketFunctionsOne->getReceipt();
+        $receiptOne = $this->basketOneFunctions->getReceipt();
 
-        $conditionOne = $this->generateReceiptTest($receiptOne, $testInputOne);
-
-        $this->assertTrue($conditionOne, "Tested getReceipt() functionality for first basket.");
+        $this->generateReceiptTest($receiptOne, $testInputOne);
 
         /**  Test functionality for second basket **/
         $testInputTwo = [
@@ -56,11 +52,9 @@ class BasketFunctionsTest extends TestCase
             'basket_id' => 2
         ];
 
-        $receiptTwo = $this->basketFunctionsTwo->getReceipt();
+        $receiptTwo = $this->basketTwoFunctions->getReceipt();
 
-        $conditionTwo = $this->generateReceiptTest($receiptTwo, $testInputTwo);
-
-        $this->assertTrue($conditionTwo, "Tested getReceipt() functionality for second basket.");
+        $this->generateReceiptTest($receiptTwo, $testInputTwo);
 
         /**  Test functionality for third basket **/
         $testInputThree = [
@@ -74,90 +68,111 @@ class BasketFunctionsTest extends TestCase
             'basket_id' => 3
         ];
 
-        $receiptThree = $this->basketFunctionsThree->getReceipt();
+        $receiptThree = $this->basketThreeFunctions->getReceipt();
 
-        $conditionThree = $this->generateReceiptTest($receiptThree, $testInputThree);
-
-        $this->assertTrue($conditionThree, "Tested getReceipt() functionality for third basket.");
+        $this->generateReceiptTest($receiptThree, $testInputThree);
     }
 
-    public function testGetProducts()
+    /**public function testGetProducts()
     {
         //TODO Implement test for getProducts method
-        $this->assertTrue(false);
-    }
+        //$this->assertTrue(false);
+    }**/
 
-    public function testGetProductCount()
+    /**public function testGetProductCount()
     {
         //TODO Implement test for getProductCount method
-        $this->assertTrue(false);
-    }
+        //$this->assertTrue(false);
+    }**/
 
-    public function testAddProducts()
+    /**public function testAddProducts()
     {
         //TODO Implement test for addProducts method
-        $this->assertTrue(false);
-    }
+        //$this->assertTrue(false);
+    }**/
 
     public function testGetProductsCostTotal()
     {
-        //TODO Implement test for getProductsCostTotal method
-        $this->assertTrue(false);
+        $basketOneProductCostsTotal = $this->basketOneFunctions->getProductsCostTotal();
+        $basketTwoProductCostsTotal = $this->basketTwoFunctions->getProductsCostTotal();
+        $basketThreeProductCostsTotal = $this->basketThreeFunctions->getProductsCostTotal();
+
+        $this->assertEquals(28.33, $basketOneProductCostsTotal, '', 0.00);
+        $this->assertEquals(57.50, $basketTwoProductCostsTotal, '', 0.00);
+        $this->assertEquals(67.98, $basketThreeProductCostsTotal, '', 0.00);
     }
 
     public function testGetProductsSalesTaxTotal()
     {
-        //TODO Implement test for getProductsSalesTaxTotal method
-        $this->assertTrue(false);
+        $basketOneSalesTaxTotal = $this->basketOneFunctions->getProductsSalesTaxTotal();
+        $basketTwoSalesTaxTotal = $this->basketTwoFunctions->getProductsSalesTaxTotal();
+        $basketThreeSalesTaxTotal = $this->basketThreeFunctions->getProductsSalesTaxTotal();
+
+        $this->assertEquals(1.50, $basketOneSalesTaxTotal, '', 0.00);
+        $this->assertEquals(4.75, $basketTwoSalesTaxTotal, '', 0.00);
+        $this->assertEquals(4.70, $basketThreeSalesTaxTotal, '', 0.00);
     }
 
     public function testGetProductsImportTaxTotal()
     {
-        //TODO Implement test for getProductsImportTaxTotal method
-        $this->assertTrue(false);
+        $basketOneImportTaxTotal = $this->basketOneFunctions->getProductsImportTaxTotal();
+        $basketTwoImportTaxTotal = $this->basketTwoFunctions->getProductsImportTaxTotal();
+        $basketThreeImportTaxTotal = $this->basketThreeFunctions->getProductsImportTaxTotal();
+
+        $this->assertEquals(0.00, $basketOneImportTaxTotal, '', 0.00);
+        $this->assertEquals(2.90, $basketTwoImportTaxTotal, '', 0.00);
+        $this->assertEquals(2.00, $basketThreeImportTaxTotal, '', 0.00);
     }
 
     public function testGetFinalTaxesTotal()
     {
-        //TODO Implement test for getFinalTaxesTotal method
-        $this->assertTrue(false);
+        $basketOneFinalTaxesTotal = $this->basketOneFunctions->getFinalTaxesTotal();
+        $basketTwoFinalTaxesTotal = $this->basketTwoFunctions->getFinalTaxesTotal();
+        $basketThreeFinalTaxesTotal = $this->basketThreeFunctions->getFinalTaxesTotal();
+
+        $this->assertEquals(1.50, $basketOneFinalTaxesTotal, '', 0.00);
+        $this->assertEquals(7.65, $basketTwoFinalTaxesTotal, '', 0.00);
+        $this->assertEquals(6.70, $basketThreeFinalTaxesTotal, '', 0.00);
     }
 
     public function testGetFinalTotalCosts()
     {
-        //TODO Implement test for getFinalTotalCosts method
-        $this->assertTrue(false);
+        $basketOneFinalTotalCosts = $this->basketOneFunctions->getFinalTotalCosts();
+        $basketTwoFinalTotalCosts = $this->basketTwoFunctions->getFinalTotalCosts();
+        $basketThreeFinalTotalCosts = $this->basketThreeFunctions->getFinalTotalCosts();
+
+        $this->assertEquals(29.83, $basketOneFinalTotalCosts, '', 0.00);
+        $this->assertEquals(65.15, $basketTwoFinalTotalCosts, '', 0.00);
+        $this->assertEquals(74.68, $basketThreeFinalTotalCosts, '', 0.00);
     }
 
-    public function testCreateReceipt()
+    /**public function testCreateReceipt()
     {
         //TODO Implement test for createReceipt method
-        $this->assertTrue(false);
-    }
+        //$this->assertTrue(false);
+    }**/
 
     public function tearDown()
     {
-        //TODO Implement tearDown method
+        parent::tearDown();
     }
 
     /**
      * @param \App\Models\Receipt $receipt
      * @param array               $testInput
      *
-     * @return bool
+     * @return void
      */
     private function generateReceiptTest(\App\Models\Receipt $receipt, array $testInput){
 
-        $condition = $receipt->id == $testInput['id'] &&
-            $receipt->final_product_cost_total == $testInput['final_product_cost_total'] &&
-            $receipt->sales_tax_total == $testInput['sales_tax_total'] &&
-            $receipt->import_tax_total == $testInput['import_tax_total'] &&
-            $receipt->final_taxes_total == $testInput['final_taxes_total'] &&
-            $receipt->final_receipt_total == $testInput['final_receipt_total'] &&
-            $receipt->receipt_content == $testInput['receipt_content'] &&
-            $receipt->basket_id == $testInput['basket_id'];
-
-        return $condition;
+        $this->assertEquals($receipt->id, $testInput['id']);
+        $this->assertEquals($receipt->final_product_cost_total, $testInput['final_product_cost_total']);
+        $this->assertEquals($receipt->sales_tax_total, $testInput['sales_tax_total']);
+        $this->assertEquals($receipt->import_tax_total, $testInput['import_tax_total']);
+        $this->assertEquals($receipt->final_taxes_total, $testInput['final_taxes_total']);
+        $this->assertEquals($receipt->final_receipt_total, $testInput['final_receipt_total']);
+        $this->assertEquals($receipt->receipt_content, $testInput['receipt_content']);
+        $this->assertEquals($receipt->basket_id, $testInput['basket_id']);
     }
 
 }
