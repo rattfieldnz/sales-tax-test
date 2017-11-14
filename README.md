@@ -151,7 +151,7 @@ If viewing the image does not work, you can open the `products-page-not-logged-i
 
 ##### Logged In #####
 
-![View of products page as logged in user](https://github.com/rattfieldnz/sales-tax-test/blob/master/products-page-not-logged-in.png)
+![View of products page as logged in user](https://github.com/rattfieldnz/sales-tax-test/blob/master/products-page-logged-in.png)
 <!-- .element style="width:640px;" -->
 
 If viewing the image does not work, you can open the `products-page-logged-in.png` image in the root of this repository.
