@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
         $this->command->info("Seeded test user: name => " . $user->name . ", email => " . $user->email);
 
         // We only want to seed a demo user in a local environment.
-        if(config('app.env') == 'local') {
+        //if(config('app.env') == 'local') {
             $demoUser = new User(
                 [
                     'name' => "Demo Demo",
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
             $demoUser->save();
 
             $this->command->info("Seeded demo user: name => " . $demoUser->name . ", email => " . $demoUser->email);
-        }
+        //}
 
     }
 }
