@@ -5,6 +5,18 @@ This project has been built using Laravel 5.5. To see various libraries used in 
 
 *If you have any issues installing and running this project, please let me know - I'm very happy to help, and also learn something new.*
 
+---
+
+**EDIT (15/11/2017):** A live demo is available at [https://sales-tax-test.robertattfield.com](https://sales-tax-test.robertattfield.com). To login, enter the following credentials:
+
+- Email: demo@salestaxtest.com (not a real one)
+- Password: demo
+
+The demo user cannot save any edits, and add/delete new items.
+
+---
+
+
 To install the project on your local server, please read the requirements below: 
 
 ---
@@ -194,3 +206,42 @@ You can also run unit tests only in particular test files by the following examp
 Also, if you choose, you can also run unit tests for individual test methods by the following example:
 
 `vendor/bin/./phpunit --filter testMethod TestClass tests/Unit/TestClass.php`
+
+### NOTES: ###
+
+If you wish to fork this repo and make your own changes, I recommend you run the following commands (within build/sales-tax-test):
+
+#### Install npm modules ####
+
+`npm install --save --no-bin-links --force`
+
+Depending on your set-up, you may get errors in this process. One example is NPM complaing that 'cross-env' does not exist. You can install this by running the following command:
+
+`npm -g install cross-env --save --no-bin-links;`
+`npm install cross-env --save --no-bin-links;` 
+
+#### Run Laravel Mix scripts ####
+
+To do this, run the following commands (assuming the above ones worked):
+
+`npm run dev && npm-run-prod`
+
+Basically, 'dev' compiles all the front-end assets together, and prod compresses/minifies them.
+
+If doing the above resulted in errors, and you want to reinstall all node modules again, run the following:
+
+```
+rm -rf node_modules --force; 
+rm package-lock.json yarn.lock; 
+npm cache clear --force; 
+npm install --save --force --no-bin-links;
+```
+
+The following links point to resources that may provide extra assistance:
+
+- [https://github.com/JeffreyWay/laravel-mix/issues/1072#issuecomment-319401164](https://github.com/JeffreyWay/laravel-mix/issues/1072#issuecomment-319401164)
+- [https://docs.npmjs.com/troubleshooting/common-errors](https://docs.npmjs.com/troubleshooting/common-errors)
+- [https://docs.npmjs.com/all](https://docs.npmjs.com/all)
+- [https://github.com/npm/npm/wiki/Troubleshooting](https://github.com/npm/npm/wiki/Troubleshooting)
+- [https://www.sitepoint.com/beginners-guide-node-package-manager/](https://www.sitepoint.com/beginners-guide-node-package-manager/)
+- [https://laracasts.com/discuss/channels/laravel/cross-env-not-found-on-npm-run-dev?page=1](https://laracasts.com/discuss/channels/laravel/cross-env-not-found-on-npm-run-dev?page=1)
