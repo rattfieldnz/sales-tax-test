@@ -1,7 +1,7 @@
 # sales-tax-test
 A test project for a dev job interview.
 
-This project has been built using Laravel 5.5. To see various libraries used in development of this project, please view the *composer.json* and *package.json* files. Front-end assets are managed and compiled via *laravel-mix* and *webpack*. To view the task/problem I needed to worl on, please visit the [TASKDETAILS.md](https://github.com/rattfieldnz/sales-tax-test/blob/master/TASKDETAILS.md) file.
+This project has been built using Laravel 5.5. To see various libraries used in development of this project, please view the *composer.json* and *package.json* files. Front-end assets are managed and compiled via *laravel-mix* and *webpack*. To view the task/problem I needed to work on, please visit the [TASKDETAILS.md](https://github.com/rattfieldnz/sales-tax-test/blob/master/TASKDETAILS.md) file.
 
 *If you have any issues installing and running this project, please let me know - I'm very happy to help, and also learn something new.*
 
